@@ -43,3 +43,22 @@ password_input = WebDriverWait(driver, 10).until(
 password_input.click()
 password_input.clear()
 password_input.send_keys("Cervantes_cag2016")
+
+login_button = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable((By.ID, "btnLoginManagers"))
+)
+login_button.click()
+time.sleep(3)
+
+# Wait for the div element to be clickable
+div_element = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, ".tilemenu_tile[data-menu-item='/portal.php?site=hrAdmin&page=hrAdminEmployees&wrap'] .tilemenu_img"))
+)
+
+# Click the div element
+div_element.click()
+time.sleep(3)
+
+input_element = driver.find_element("id", "filter")
+input_element.click()
+input_element.send_keys("hi")
