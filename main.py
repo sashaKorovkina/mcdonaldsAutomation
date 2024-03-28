@@ -1,3 +1,4 @@
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -50,20 +51,16 @@ login_button = WebDriverWait(driver, 10).until(
 login_button.click()
 time.sleep(3)
 
-# Wait for the div element to be clickable
-div_element = WebDriverWait(driver, 10).until(
-    EC.element_to_be_clickable((By.CSS_SELECTOR, ".tilemenu_tile[data-menu-item='/portal.php?site=hrAdmin&page=hrAdminEmployees&wrap'] .tilemenu_img"))
-)
+url = "https://www.mcdstuff.co.uk/portal.php?site=hrAdmin&page=hrAdminEmployees&wrap"
+driver.get(url)
+filter_input = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div/div[2]/portal-ui/div/portal-ui/div[3]/div[1]/section[1]/input"))
+    )
+filter_input.click()
+filter_input.clear()
+filter_input.send_keys("100972")
 
-# Click the div element
-div_element.click()
-time.sleep(7)
 
-# Wait for the specific button to be clickable
-wait = WebDriverWait(driver, 10)  # Adjust the timeout as necessary
-specific_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="filter"]'')))
-specific_button = driver.find_element(By.CLASS_NAME, 'grid1 portal-search')
 
-# Click the button
-specific_button.click()
-time.sleep(7)
+
+time.sleep(60)
