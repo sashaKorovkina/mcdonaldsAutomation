@@ -57,13 +57,5 @@ div_element = WebDriverWait(driver, 10).until(
 
 # Click the div element
 div_element.click()
-time.sleep(7)
+time.sleep(5)
 
-# Wait for the specific button to be clickable
-wait = WebDriverWait(driver, 10)  # Adjust the timeout as necessary
-specific_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="filter"]'')))
-specific_button = driver.find_element(By.CLASS_NAME, 'grid1 portal-search')
-
-# Click the button
-specific_button.click()
-time.sleep(7)
