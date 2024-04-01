@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from selenium.webdriver.common.keys import Keys
 
 driver = webdriver.Chrome()
 
@@ -58,4 +59,17 @@ div_element = WebDriverWait(driver, 10).until(
 # Click the div element
 div_element.click()
 time.sleep(5)
+
+url = "https://www.mcdstuff.co.uk/portal.php?site=hrAdmin&page=hrAdminEmployees&wrap"
+driver.get(url)
+
+#/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div[3]/div[1]/section[1]/input
+
+div_element = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div[3]/div[1]/section[1]/input"))
+    )
+div_element.click()
+time.sleep(5)
+div_element.send_keys("111")
+div_element.send_keys(Keys.ENTER)
 

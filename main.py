@@ -126,7 +126,6 @@ def update_employee(employee_id, new_hourly_rate, driver_window_handle):
 
     print("Set as of date...")
 
-
     as_of_date = "/html/body/div[3]/div/portal-ui/div/div/div/input[2]"
     today = datetime.date.today()
     today_string = today.strftime("%d/%m/%Y")
@@ -139,33 +138,45 @@ def update_employee(employee_id, new_hourly_rate, driver_window_handle):
     change_button.click()
     change_button.clear()
     change_button.send_keys(Keys.ENTER)
-    time.sleep(10)
+    change_button.send_keys(Keys.TAB)
+    time.sleep(3)
 
     print("Click add...")
     #     add_change = "/html/body/div[3]/div/portal-ui/div/button[1]"
+    add_change = "/html/body/div[7]/div/portal-ui/div/button[1]"
+    cancel = "/html/body/div[7]/div/portal-ui/div/button[2]"
     # clicker_xpath(driver, add_change)
-    add_change = "/html/body/div[3]/div/portal-ui/div/button[1]"
-    add_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, add_change))
-    )
-    add_button.click()
 
-    # hourly_rate = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[4]/div[8]/div[2]/div/div/div/div/input"
-    # sender_xpath(management_page, hourly_rate, new_hourly_rate)
+    # add_button = WebDriverWait(driver, 15).until(
+    #     EC.element_to_be_clickable((By.XPATH, cancel))
+    # )
+    # add_button.click()
+    # Wait until the element is clickable
+    add_button = WebDriverWait(driver, 15).until(
+        EC.element_to_be_clickable((By.XPATH, cancel))
+    )
+
+    # Use JavaScript to click on the element
+    driver.execute_script("arguments[0].click();", add_button)
+
+    #/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[4]/div[8]/div[2]/div/div/div/div/input
+
+    hourly_rate = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[4]/div[8]/div[2]/div/div/div/div/input"
+    sender_xpath(driver, hourly_rate, new_hourly_rate)
 
     # click_submit = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]"
-    # # clicker_xpath(management_page, click_submit)
-    #
-    # click_cancel = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[6]"
-    # clicker_xpath(management_page, click_cancel)
+    # # clicker_xpath(driver, click_submit)
+
+    click_cancel = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[6]"
+    clicker_xpath(driver, click_cancel)
     print("Close tab...")
     driver.close()
 
 
 if __name__ == "__main__":
     driver_handle = login(user_name="ee949499", password="Cervantes_cag2016")
-    update_employee(employee_id=109197, new_hourly_rate="102.24", driver_window_handle=driver_handle)
-    update_employee(employee_id=124441, new_hourly_rate="102.24", driver_window_handle=driver_handle)
-    update_employee(employee_id=153193, new_hourly_rate="102.24", driver_window_handle=driver_handle)
-    update_employee(employee_id=210458, new_hourly_rate="102.24", driver_window_handle=driver_handle)
+    update_employee(employee_id=109197, new_hourly_rate="12.50", driver_window_handle=driver_handle)
+    update_employee(employee_id=124441, new_hourly_rate="12.50", driver_window_handle=driver_handle)
+    update_employee(employee_id=153193, new_hourly_rate="12.50", driver_window_handle=driver_handle)
+    update_employee(employee_id=210458, new_hourly_rate="12.50", driver_window_handle=driver_handle)
 
