@@ -114,7 +114,7 @@ def update_employee(employee_id, new_hourly_rate, driver_window_handle):
     change_reason = "/html/body/div[3]/div/portal-ui/div/select[2]"
     select_from_dropdown(driver, change_reason, "Scale Change")
     as_of_date = "/html/body/div[3]/div/portal-ui/div/div/div/input[2]"
-    date_string = '06/05/2024'
+    date_string = '07/05/2024'
 
     # Convert the string to a datetime object
     # Make sure the format in strptime matches the format of your date_string
@@ -151,6 +151,7 @@ def update_employee(employee_id, new_hourly_rate, driver_window_handle):
         # /html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]
         # /html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[1]
         click_submit = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]"
+        #/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]
         clicker_xpath(driver, click_submit)
 
         print("New details submitted...")
@@ -163,7 +164,7 @@ def update_employee(employee_id, new_hourly_rate, driver_window_handle):
 
 if __name__ == "__main__":
     errored_employee = []
-    file_path = r"C:\Users\sasha\Desktop\McDonalds\Payrates.xlsx"
+    file_path = r"C:\Users\sasha\OneDrive - CMi2i\Desktop\Payrates.xlsx"
     sheet_name = "SM £13"
     df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl', skiprows=0)
     column_b = df.iloc[:, 1]  # Column B
@@ -173,15 +174,15 @@ if __name__ == "__main__":
     combined = list(zip(column_b, column_e))
     driver_handle = login(user_name="ee949499", password="Cervantes_cag2016")
     # print(combined)
-    for employee_id, new_hourly_rate in combined:
-        try:
-            print(f'{new_hourly_rate}')
-            print(f'{employee_id}')
-            update_employee(employee_id=employee_id, new_hourly_rate=str(new_hourly_rate),
-                            driver_window_handle=driver_handle)
-        except Exception as e:
-            print(f'Errored employee_id: {employee_id}')
-            errored_employee.append(employee_id)
+    for employee_id, new_hourly_rate in combined[2:]:
+        # try:
+        print(f'{new_hourly_rate}')
+        print(f'{employee_id}')
+        update_employee(employee_id=employee_id, new_hourly_rate=str(new_hourly_rate),
+                        driver_window_handle=driver_handle)
+        # except Exception as e:
+        #     print(f'Errored employee_id: {employee_id}')
+        #     errored_employee.append(employee_id)
 
 print(errored_employee)
 
