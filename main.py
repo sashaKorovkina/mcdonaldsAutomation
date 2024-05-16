@@ -143,29 +143,25 @@ def update_employee(employee_id, new_hourly_rate, driver_window_handle):
         EC.element_to_be_clickable((By.XPATH, hourly_rate))
     )
 
-    input_element = change_button.find_element(By.XPATH, "./preceding-sibling::input")
-    print(input_element)
-    if input_element == input:
-        print("Submitting new pay details")
-        # /html/body/div[8]/div/portal-ui/div/button[1]
-        # /html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]
-        # /html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[1]
-        click_submit = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]"
-        #/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]
-        clicker_xpath(driver, click_submit)
+    print("Submitting new pay details")
+    # /html/body/div[8]/div/portal-ui/div/button[1]
+    # /html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]
+    # /html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[1]
+    click_submit = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]"
+    #/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[4]
+    clicker_xpath(driver, click_submit)
 
-        print("New details submitted...")
-        # print("Canceling new pay details")
-        # click_cancel = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[6]"
-        # clicker_xpath(driver, click_cancel)
-        print("Close tab in 10 secs...")
-        time.sleep(10)
-        driver.close()
+    print("New details submitted...")
+    # print("Canceling new pay details")
+    # click_cancel = "/html/body/div[1]/div[2]/portal-ui/div/portal-ui/div/div[2]/div/div/div[2]/div[2]/div/div[2]/div[1]/button[6]"
+    print("Close tab in 10 secs...")
+    time.sleep(10)
+    driver.close()
 
 if __name__ == "__main__":
     errored_employee = []
     file_path = r"C:\Users\sasha\OneDrive - CMi2i\Desktop\Payrates.xlsx"
-    sheet_name = "SM £13"
+    sheet_name = "CM 18+ (£11.65)"
     df = pd.read_excel(file_path, sheet_name=sheet_name, engine='openpyxl', skiprows=0)
     column_b = df.iloc[:, 1]  # Column B
     column_e = df.iloc[:, 5]  # Column F
@@ -174,7 +170,7 @@ if __name__ == "__main__":
     combined = list(zip(column_b, column_e))
     driver_handle = login(user_name="ee949499", password="Cervantes_cag2016")
     # print(combined)
-    for employee_id, new_hourly_rate in combined[2:]:
+    for employee_id, new_hourly_rate in combined[140:]:
         # try:
         print(f'{new_hourly_rate}')
         print(f'{employee_id}')
