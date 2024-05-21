@@ -38,21 +38,8 @@ To run the `main.py` script from the `mcdonaldsAutomation` repository, follow th
      - Choose `System Interpreter` and select your installed Python version.
      - Click `OK` to apply the changes.
 
-4. **Install Required Packages**
-   - Open the `requirements.txt` file in the project.
-   - Right-click on `requirements.txt` and select `Install Package`.
-   - PyCharm will automatically install all the required dependencies.
-
-5. **Run `main.py`**
+4. **Run `main.py`**
    - Locate `main.py` in the Project tool window (usually on the left side).
    - Right-click on `main.py` and select `Run 'main'`.
-
-## Additional Notes
-
-- Ensure you have an active internet connection for cloning the repository and installing dependencies.
-- If you encounter any issues with dependencies, you can manually install them using:
-  ```sh
-  pip install -r requirements.txt
-  ```
 
 By following these steps, you should be able to successfully run the `main.py` script from the `mcdonaldsAutomation` repository using PyCharm.
